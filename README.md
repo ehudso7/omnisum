@@ -2,6 +2,10 @@
 
 A versatile text summarization tool built with TypeScript.
 
+🚀 **This repo uses Dev Containers and Gitpod Automations. Open in Gitpod or VS Code with Dev Containers to get started.**
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ehudso7/omnisum)
+
 ## Features
 
 - Simple and efficient text summarization
@@ -27,25 +31,51 @@ console.log(summary);
 
 ## Development
 
+### Quick Start with Gitpod
+Click the button above to open this project in a pre-configured cloud development environment.
+
+### Local Development with Dev Containers
+1. Install [Docker](https://www.docker.com/get-started) and [VS Code](https://code.visualstudio.com/)
+2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+3. Clone this repo and open in VS Code
+4. When prompted, click "Reopen in Container"
+
+### Manual Setup
+
 ```bash
-# Install dependencies
-npm install
+# Install dependencies (we use pnpm)
+pnpm install
+
+# Run the API server
+pnpm run dev:server
 
 # Run in development mode
-npm run dev
+pnpm run dev
 
 # Build the project
-npm run build
+pnpm run build
 
 # Run tests
-npm test
+pnpm test
 
 # Type checking
-npm run typecheck
+pnpm run typecheck
 
 # Linting
-npm run lint
+pnpm run lint
 ```
+
+### API Endpoints
+
+- `GET /health` - Health check endpoint
+- `POST /api/summarize` - Summarize text
+  ```json
+  {
+    "text": "Your long text here...",
+    "maxLength": 100,
+    "format": "plain"
+  }
+  ```
 
 ## License
 
