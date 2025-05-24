@@ -1,0 +1,63 @@
+tasks:
+  hello:
+    name: Hello World
+    command: |
+      echo "Hello, World!"
+    triggeredBy:
+      - manual
+      # - postEnvironmentStart
+      # - postDevcontainerStart
+  
+  lint:
+    name: Run Linter
+    command: |
+      echo "Running ESLint..."
+      pnpm run lint
+    triggeredBy:
+      - manual
+  
+  test:
+    name: Run Tests
+    command: |
+      echo "Running Jest tests..."
+      pnpm test
+    triggeredBy:
+      - manual
+
+services:
+  backend:
+    name: OmniSum Backend Service
+    description: Express API server for text summarization
+    commands:
+      start: |
+        echo "Starting OmniSum backend service..."
+        cd /workspace/omnisum
+        pnpm run dev:server
+      ready: |
+        # Check if server is responding on port 3000
+        curl -f http://localhost:3000/health > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+          echo "Backend service is ready"
+          exit 0
+        else
+          echo "Backend service is not ready"
+          exit 1
+        fi
+      stop: |
+        echo "Stopping backend service..."
+        pkill -f "ts-node src/server.ts"
+    triggeredBy:
+      - postEnvironmentStart
+      # - postDevcontainerStart
+  
+  frontend:
+    name: Frontend Dev Server
+    description: Development server for frontend (placeholder)
+    commands:
+      start: |
+        echo "Frontend server placeholder - add your frontend start command here"
+      ready: |
+        echo "Frontend ready check placeholder"
+        exit 0
+    triggeredBy:
+      - manual
