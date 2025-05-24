@@ -1,0 +1,56 @@
+# Gitpod configuration file
+# https://www.gitpod.io/docs/config-gitpod-file
+
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: Install Dependencies
+    init: |
+      pnpm install
+      pnpm run build
+    command: |
+      echo "🚀 OmniSummarize development environment ready!"
+      echo "Run 'pnpm run dev' to start the development server"
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: notify
+    visibility: public
+    description: Node.js Application
+  - port: 5173
+    onOpen: open-preview
+    visibility: public
+    description: Vite Development Server
+  - port: 8080
+    onOpen: open-browser
+    visibility: public
+    description: API or Frontend Server
+
+# Configure prebuilds
+github:
+  prebuilds:
+    # enable for the default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: false
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # enable for pull requests coming from forks (defaults to false)
+    pullRequestsFromForks: false
+    # add a check to pull requests (defaults to true)
+    addCheck: true
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+    addComment: false
+    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+    addBadge: true
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - formulahendry.auto-close-tag
+    - formulahendry.auto-rename-tag
+    - ms-azuretools.vscode-docker
+    - eamodio.gitlens
+    - github.vscode-pull-request-github
+    - gruntfuggly.todo-tree
