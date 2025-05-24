@@ -10,7 +10,9 @@
     "build": "tsc",
     "test": "jest",
     "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "health": "./scripts/health-check.sh",
+    "validate": "./scripts/validate-env.sh"
   },
   "keywords": ["summarization", "text-processing"],
   "author": "",

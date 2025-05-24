@@ -23,6 +23,15 @@ tasks:
       pnpm test
     triggeredBy:
       - manual
+  
+  health-check:
+    name: Environment Health Check
+    command: |
+      echo "Running environment health check..."
+      bash /workspace/omnisum/scripts/health-check.sh
+    triggeredBy:
+      - manual
+      - postEnvironmentStart
 
 services:
   backend:
